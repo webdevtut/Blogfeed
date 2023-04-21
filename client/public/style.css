@@ -1,0 +1,9 @@
+
+/* Media Query Skills */
+@media only screen and (max-width: 480px) { 
+    .logoImg {
+        height: 2.5rem !important;
+        margin-top: 1rem;
+        padding: 0 !important;
+    }
+}
