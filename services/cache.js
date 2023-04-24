@@ -20,8 +20,9 @@ mongoose.Query.prototype.exec = async function () {
   // If Yes, return that
 
   if(cacheValue) {
-    console.log(cacheValue);    
-    return JSON.parse(cacheValue);
+    console.log(this); // "this" will have access to current query and thus model on which it is performing operation
+    const doc = new this.model(JSON.parse(cacheValue));
+    return doc;
 }
 
   // Otherwise issue the query and store result in redis
