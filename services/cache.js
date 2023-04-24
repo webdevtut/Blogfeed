@@ -21,11 +21,16 @@ mongoose.Query.prototype.exec = async function () {
 
   if(cacheValue) {
     console.log(cacheValue);    
-    // return cacheValue
+    return JSON.parse(cacheValue);
 }
 
   // Otherwise issue the query and store result in redis
    result = await exec.apply(this, arguments);
-   console.log(result);
+   // .validate shows that returned result is function and not plain JSON Object in order to store in redis we have to convert into JSON
+    //  console.log(result.validate); 
+
+    client.set(key, JSON.stringify(result));
+
+    return result;
 
 };
