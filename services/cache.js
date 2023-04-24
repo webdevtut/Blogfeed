@@ -19,18 +19,22 @@ mongoose.Query.prototype.exec = async function () {
 
   // If Yes, return that
 
-  if(cacheValue) {
-    console.log(this); // "this" will have access to current query and thus model on which it is performing operation
-    const doc = new this.model(JSON.parse(cacheValue));
-    return doc;
-}
+  if (cacheValue) {
+    console.log("Cached 💰");
+    const doc = JSON.parse(cacheValue);
+    return Array.isArray(doc)
+      ? doc.map((d) => new this.model(d))
+      : new this.model(doc);    // returning cached value
+  }
 
   // Otherwise issue the query and store result in redis
    result = await exec.apply(this, arguments);
    // .validate shows that returned result is function and not plain JSON Object in order to store in redis we have to convert into JSON
     //  console.log(result.validate); 
 
-    client.set(key, JSON.stringify(result));
+    client.set(key, JSON.stringify(result)); // storing cache value
+
+    console.log("Uncached ♠");
 
     return result;
 
