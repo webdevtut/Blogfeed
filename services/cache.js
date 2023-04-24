@@ -7,16 +7,25 @@ client.get = util.promisify(client.get);
 
 const exec = mongoose.Query.prototype.exec;
 
-mongoose.Query.prototype.exec = function () {
-  console.log("I am about to run Query");
-//   console.log(this.getQuery()); // Query information (Query Params: find, where, _id, aggregate, group etc)
-//   console.log(this.mongooseCollection.name);// Collection (Model) name : Users / Blogs
+mongoose.Query.prototype.exec = async function () {
 
-// Creating Unique key for Unique Queries
-  const key = Object.assign({}, this.getQuery(), {
+  const key = JSON.stringify(Object.assign({}, this.getQuery(), {
     collection: this.mongooseCollection.name
-  });
+  }));
 
-  console.log(key);
-  return exec.apply(this, arguments);
+  // See if we have value for 'key' in redis
+
+  const cacheValue = await client.get(key);
+
+  // If Yes, return that
+
+  if(cacheValue) {
+    console.log(cacheValue);    
+    // return cacheValue
+}
+
+  // Otherwise issue the query and store result in redis
+   result = await exec.apply(this, arguments);
+   console.log(result);
+
 };
