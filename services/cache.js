@@ -42,7 +42,7 @@ mongoose.Query.prototype.exec = async function () {
    // .validate shows that returned result is function and not plain JSON Object in order to store in redis we have to convert into JSON
     //  console.log(result.validate); 
 
-    client.set(key, JSON.stringify(result)); // storing cache value
+    client.set(key, JSON.stringify(result), 'EX', 60); // storing cache value
 
     console.log("Uncached ♠");
 
