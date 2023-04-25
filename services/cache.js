@@ -7,7 +7,17 @@ client.get = util.promisify(client.get);
 
 const exec = mongoose.Query.prototype.exec;
 
+mongoose.Query.prototype.cache = function () {
+  this.useCache = true;
+  return this; // required for creating chain function
+}
+
 mongoose.Query.prototype.exec = async function () {
+
+  if(!this.useCache) {
+    console.log("uncached Query", this.getQuery(),"Collection:", this.mongooseCollection.name);
+    return exec.apply(this, arguments);
+  }
 
   const key = JSON.stringify(Object.assign({}, this.getQuery(), {
     collection: this.mongooseCollection.name
