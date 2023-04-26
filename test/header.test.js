@@ -14,9 +14,19 @@ afterEach(async () => {
 });
 
 
-test('We can launch browser', async () => {
+test('Header can load logo', async () => {
 
     const text = await page.$eval('img.logoImg', el => el.innerHTML);
 
     expect(text).toEqual("");
+});
+
+test('Clicking login starts oauth flow', async () => {
+
+    const text = await page.click('.right a');
+
+    const url = await page.url();
+    
+    console.log(url);
+
 });
