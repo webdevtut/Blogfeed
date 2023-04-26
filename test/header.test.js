@@ -9,6 +9,10 @@ beforeEach(async () => {
         await page.goto('localhost:3000');
 });
 
+afterEach(async () => {
+  await browser.close();
+});
+
 
 test('We can launch browser', async () => {
 
