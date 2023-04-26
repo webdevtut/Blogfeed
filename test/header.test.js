@@ -13,5 +13,7 @@ test('We can launch browser', async () => {
     const page = await browser.newPage();
     await page.goto('localhost:3000');
 
-    expect(page).toBeDefined();
+    const text = await page.$eval('img.logoImg', el => el.innerHTML);
+
+    expect(text).toEqual("");
 });
