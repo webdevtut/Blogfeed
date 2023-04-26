@@ -11,6 +11,7 @@ test('We can launch browser', async () => {
         headless: false
     });
     const page = await browser.newPage();
+    await page.goto('localhost:3000');
 
     expect(page).toBeDefined();
 });
