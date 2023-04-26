@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 let browser, page;
-beforeEach(async () => {
+beforeAll(async () => {
     browser = await puppeteer.launch({
             headless: false
         });
@@ -9,7 +9,7 @@ beforeEach(async () => {
         await page.goto('localhost:3000');
 });
 
-afterEach(async () => {
+afterAll(async () => {
   await browser.close();
 });
 
@@ -26,7 +26,7 @@ test('Clicking login starts oauth flow', async () => {
     const text = await page.click('.right a');
 
     const url = await page.url();
-    
-    console.log(url);
+
+    expect(url).toMatch(/accounts\.google\.com/);
 
 });
