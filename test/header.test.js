@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 let browser, page;
-beforeAll(async () => {
+beforeEach(async () => {
     browser = await puppeteer.launch({
             headless: false
         });
@@ -9,9 +9,9 @@ beforeAll(async () => {
         await page.goto('localhost:3000');
 });
 
-// afterAll(async () => {
-//   await browser.close();
-// });
+afterEach(async () => {
+  await browser.close();
+});
 
 
 test('Header can load logo', async () => {
@@ -31,7 +31,7 @@ test('Clicking login starts oauth flow', async () => {
 
 });
 
-test.only("When signed in shows logout button", async () => {
+test("When signed in shows logout button", async () => {
   const id = "64427d2b6cdc1d2decf2e98f";
 
   const Buffer = require("safe-buffer").Buffer;
