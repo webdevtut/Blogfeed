@@ -34,7 +34,7 @@ class Header extends Component {
             className="left brand-logo"
             style={{ marginLeft: '10px' }}
           >
-          <img src="./logo.png" alt="" className='logoImg' style={{ height: '4rem', padding: '0.5rem' }}></img>
+          <img src="./logo.png" alt="logo" className='blogFeed' style={{ height: '4rem', padding: '0.5rem' }}></img>
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
