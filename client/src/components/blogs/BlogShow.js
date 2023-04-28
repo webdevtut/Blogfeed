@@ -15,7 +15,7 @@ class BlogShow extends Component {
     const { title, content } = this.props.blog;
 
     return (
-      <div>
+      <div className='m-2'>
         <h3>{title}</h3>
         <p>{content}</p>
       </div>

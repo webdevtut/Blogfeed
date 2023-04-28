@@ -12,7 +12,7 @@ class BlogFormReview extends Component {
 
     return _.map(formFields, ({ name, label }) => {
       return (
-        <div key={name}>
+        <div className="mb-1" key={name}>
           <label>{label}</label>
           <div>{formValues[name]}</div>
         </div>

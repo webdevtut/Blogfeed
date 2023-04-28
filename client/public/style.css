@@ -32,3 +32,11 @@
 .foot-logo {
     width: 20rem;
 }
+
+.m-2 {
+    margin: 2rem !important;
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
+}

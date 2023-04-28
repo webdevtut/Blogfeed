@@ -1331,7 +1331,7 @@ input[type="date"], input[type="email"], input[type="number"], input[type="passw
 	background-color: #363f36;
 } */
 #Subheader {
-	background-color: rgba(247, 247, 247, 1);
+	background-color: #e2e0dc;
 }
 .header-classic #Action_bar, .header-fixed #Action_bar, .header-plain #Action_bar, .header-split #Action_bar, .header-stack #Action_bar {
 	background-color: #292b33;
@@ -1682,6 +1682,7 @@ blockquote, blockquote a, blockquote a:hover {
 }
 .image_frame .image_wrapper .mask::after {
 	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.15)
 }
 .sliding_box .desc_wrapper {
 	background: #ac8a62;

@@ -2242,6 +2242,7 @@ body.header-stack:not(.template-slider) #Header {
 .post-desc-wrapper {
 	width: 63%;
 	float: left;
+	box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.15)
 }
 .post-desc {
 	padding: 15px 0 0 20px;

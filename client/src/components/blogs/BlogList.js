@@ -12,7 +12,7 @@ class BlogList extends Component {
   renderBlogs() {
     return map(this.props.blogs, blog => {
       return (
-        <div className="card darken-1 horizontal" key={blog._id}>
+        <div className="card darken-1 horizontal m-2" key={blog._id}>
           <div className="card-stacked">
             <div className="card-content">
               <span className="card-title">{blog.title}</span>
