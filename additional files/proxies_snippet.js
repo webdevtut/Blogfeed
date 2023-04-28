@@ -7,10 +7,20 @@ class Page {
   }
 }
 
-class CustomPage extends Page {
+class CustomPage {
+  // static method created on class to extend
+  static build() {
+   const page = new Page();
+   const customPage = new CustomPage(page);
+   const superPage = new Proxy(customPage, {
+    get: function(target, property) {
+      return target[property] || page[property]
+      }
+    });
+  return superPage;
+  }
   
   constructor(page) {
-    super()
     this.page = page;
   }
   login() {
@@ -20,18 +30,35 @@ class CustomPage extends Page {
   }
 }
 
-const page = new Page();
+// Created method to build proxy Object
 
-const customPage = new CustomPage(page);
+// const buildPage = () => {
+//   const page = new Page();
 
-////UNCOMMENT BELOW LINES AND UNDERSTAND 🚨
+//   const customPage = new CustomPage(page);
 
-// customPage.goto() // We can accesss both methods on this newly created Class using 'extends' and 'super' 😏
+//   const superPage = new Proxy(customPage, {
+//     get: function(target, property) {
+//       return target[property] || page[property]
+//       }
+//     });
+  
+//   return superPage;
+// }
+
+// buildPage();
 
 
-// page.login(); // But this third party library defined class will not have access to our class' function 'login()' 😟
 
-// In order to resolve this WE use Javascript Proxies as used in below example 🐱‍💻
+// Functions from both classes are accessible now in this proxy created Object
+// superPage.login();  
+// superPage.goto();
+
+// Final Architecture for creating superPage which will have access to 'customPage' (created by us) and (puppeteer class) 'page' functions
+// Which will help us create object with functions for testing (eg. login) and all predefined functions from (Third party library like puppeteer) classes eg. 'page'
+const superPage = CustomPage.build();
+superPage.login();  
+superPage.goto();
  
 
 
