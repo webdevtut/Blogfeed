@@ -13,7 +13,7 @@ afterEach(async () => {
 
 test('Header can load logo', async () => {
 
-    const text = await page.$eval('img[alt="logo"]', el => el.className);
+    const text = await page.getClassNameOf('img[alt="logo"]');
 
     expect(text).toEqual("blogFeed");
 });
