@@ -6,15 +6,20 @@ class CustomPage {
       headless: false,
     });
     const page = await browser.newPage();
-    const customPage = new CustomPage(page);
+    const customPage = new CustomPage(page, browser);
     return new Proxy(customPage, {
       get: function (target, property) {
-        return target[property] || browser[property] || page[property];
+        return target[property] || page[property] ||  browser[property];
       },
     });
   }
-  constructor(page) {
+  constructor(page, browser) {
     this.page = page;
+    this.browser = browser;
+  }
+
+  close() {
+    this.browser.close(); // alternate priority
   }
 }
 
