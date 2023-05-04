@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+# /build  //Uncomment after Render Deploy test
 
 # misc
 .DS_Store
