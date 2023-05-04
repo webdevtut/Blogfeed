@@ -56,13 +56,13 @@
 	border-bottom: unset;
 	padding: 0 5px 5px 0
 }
-.photo2 .category .cat-wrapper ul li a {
+.photo2 .category .cat-wrapper ul li span {
 	background-color: rgba(0, 0, 0, .05)!important;
 	color: rgba(0, 0, 0, .6);
 	padding: 3px 12px;
 	border-radius: 20px
 }
-.photo2 .category .cat-wrapper ul li a:hover {
+.photo2 .category .cat-wrapper ul li span:hover {
 	color: rgba(0, 0, 0, .8)
 }
 .photo2 .button-love {
@@ -125,11 +125,11 @@
 .photo2 .bg-dark .post-footer {
 	border-top-color: rgba(255, 255, 255, .1)
 }
-.photo2 .bg-dark .category .cat-wrapper ul li a {
+.photo2 .bg-dark .category .cat-wrapper ul li span {
 	background-color: rgba(255, 255, 255, .1)!important;
 	color: rgba(255, 255, 255, .6)
 }
-.photo2 .bg-dark .category .cat-wrapper ul li a:hover {
+.photo2 .bg-dark .category .cat-wrapper ul li span:hover {
 	color: rgba(255, 255, 255, .8)
 }
 .photo2.col-2 .post-item {
@@ -2686,4 +2686,8 @@ p.flv_align_right, div.flv_align_right {
 }
 #contactform #submit, #newsletterform input {
 	width: 100%;
+}
+
+h2.entry-title {
+	color:rgba(255, 255, 255, .8);
 }

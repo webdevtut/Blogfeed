@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_BLOGS, FETCH_BLOG } from './types';
+import { FETCH_USER, FETCH_BLOGS, FETCH_BLOG, FETCH_PUBLIC } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
 
   dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchPublicBlogs = () => async dispatch => {
+  const res = await axios.get('/api/publicblogs');
+
+  dispatch({ type: FETCH_PUBLIC, payload: res.data });
 };
 
 export const handleToken = token => async dispatch => {
