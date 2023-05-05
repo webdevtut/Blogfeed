@@ -24,7 +24,7 @@ class Landing extends Component {
           className="post-item isotope-item clearfix post-45 post type-post status-publish format-standard has-post-thumbnail hentry category-adventures"
         >
           <div className="date_label">{blog.createdAt}</div>
-          <div className="button-love">
+          <div style={{ cursor: 'pointer' }} className="button-love">
             <span onClick={() => this.clickHandler(blog._id)} className="mfn-love " data-id={45}>
               <span className="icons-wrapper">
                 <i className="icon-heart-empty-fa" />
