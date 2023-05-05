@@ -11,17 +11,28 @@ const blogSchema = new Schema({
     enum: ['private', 'public'],
     default: 'private',
   },
-  _user: { type: Schema.ObjectId, ref: 'User' }
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref : 'User',
+      unique: true
+    }
+  ],
+  _user: { type: Schema.ObjectId, ref: 'User' },
 },
 {
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
 });
 
+blogSchema.virtual('likesCount').get(function () {
+  return this.likes.length
+});
+
 blogSchema.pre(/^find/, function (next) {
   this.populate({
     path: '_user',
-    select: 'photoUrl'
+    select: 'displayName photoUrl'
   });
   next();
   });

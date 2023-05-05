@@ -3,13 +3,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import map from "lodash/map";
 import { Link } from "react-router-dom";
-import { fetchPublicBlogs } from "../actions";
+import { fetchPublicBlogs, likePublicBlog } from "../actions";
 import { v4 } from "uuid";
 
 class Landing extends Component {
   componentDidMount() {
     this.props.fetchPublicBlogs();
   }
+
+  clickHandler(blogID) {
+      this.props.likePublicBlog(blogID);
+      window.location.reload();
+}
 
   renderBlogs() {
     return map(this.props.blogs, (blog) => {
@@ -20,13 +25,13 @@ class Landing extends Component {
         >
           <div className="date_label">{blog.createdAt}</div>
           <div className="button-love">
-            <a href="/" className="mfn-love " data-id={45}>
+            <span onClick={() => this.clickHandler(blog._id)} className="mfn-love " data-id={45}>
               <span className="icons-wrapper">
                 <i className="icon-heart-empty-fa" />
                 <i className="icon-heart-fa" />
               </span>
-              <span className="label">107</span>
-            </a>
+              <span className="label">{blog.likesCount}</span>
+            </span>
           </div>
           <Link to={`/blogs/${blog._id}`}>
             <div className="image_frame post-photo-wrapper scale-with-grid images_only">
@@ -75,10 +80,12 @@ class Landing extends Component {
               <div className="post-footer">
                 <span className="vcard author post-author">
                   <img
-                    alt="Webdev Group"
-                    src={`${blog._user.photoUrl}?`}
-                    className="post-date updated" width={'70px'}
-                  />
+                    alt={blog._user.displayName}
+                    src={`${blog._user.photoUrl}`}
+                    className="post-date updated" referrerPolicy="no-referrer" width={'40px'}
+                  /> By {blog._user.displayName},
+                
+                  On &nbsp;
                   {new Date(blog.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}
                 </span>
               </div>
@@ -159,4 +166,4 @@ function mapStateToProps({ blogs }) {
 }
 
 // export default Landing;
-export default connect(mapStateToProps, { fetchPublicBlogs })(Landing);
+export default connect(mapStateToProps, { fetchPublicBlogs, likePublicBlog })(Landing);

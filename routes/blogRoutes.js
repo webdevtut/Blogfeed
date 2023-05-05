@@ -15,8 +15,21 @@ module.exports = app => {
   });
 
   app.get('/api/publicblogs', async (req, res) => {
-    const blogs = await Blog.find({ blogType: 'public' })
-    // .cache();
+    const blogs = await Blog.find({ blogType: 'public' });
+    res.send(blogs);
+  });
+
+  app.get('/api/like/:id', requireLogin,  async (req, res) => {
+    console.log('working');
+    const blogs = await Blog.findByIdAndUpdate(
+      { 
+        "_id": mongoose.Types.ObjectId(req.params.id), 
+        "likes": { "$ne": mongoose.Types.ObjectId(req.user.id) }
+    },
+      {
+        "$addToSet": {"likes": mongoose.Types.ObjectId(req.user.id)}
+      }
+    )
     res.send(blogs);
   });
 

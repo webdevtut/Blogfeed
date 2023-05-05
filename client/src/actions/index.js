@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_BLOGS, FETCH_BLOG, FETCH_PUBLIC } from './types';
+import { FETCH_USER, FETCH_BLOGS, FETCH_BLOG, FETCH_PUBLIC, LIKE_PUBLIC_BLOG } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -11,6 +11,12 @@ export const fetchPublicBlogs = () => async dispatch => {
   const res = await axios.get('/api/publicblogs');
 
   dispatch({ type: FETCH_PUBLIC, payload: res.data });
+};
+
+export const likePublicBlog = id => async dispatch => {
+  const res = await axios.get(`/api/like/${id}`);
+
+  dispatch({ type: LIKE_PUBLIC_BLOG, payload: res.data });
 };
 
 export const handleToken = token => async dispatch => {
