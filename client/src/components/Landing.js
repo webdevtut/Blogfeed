@@ -38,7 +38,7 @@ class Landing extends Component {
               <div className="image_wrapper">
                   <div className="mask" />
                   <img
-                    src="images/blogger-blog-adventure2.jpg"
+                    src={`${blog.imageUrl}`}
                     className="scale-with-grid wp-post-image"
                     alt=""
                   />
@@ -63,7 +63,7 @@ class Landing extends Component {
                       <ul className="post-categories">
                         <li>
                           <span>
-                            Adventures
+                            Public
                           </span>
                         </li>
                       </ul>

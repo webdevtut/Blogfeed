@@ -7,7 +7,24 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
 class BlogFormReview extends Component {
-  state = { file: null };
+  state = { file: null, ispublic : 'private' };
+
+  
+  convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  
 
   renderFields() {
     const { formValues } = this.props;
@@ -46,12 +63,21 @@ class BlogFormReview extends Component {
 
     const { submitBlog, history, formValues } = this.props;
 
-    submitBlog(formValues, history);
+    submitBlog(formValues, this.state, history);
   }
 
-  onFileChange(event) {
-    this.setState({ file: event.target.files });
-    console.log(event.target.files);
+  onFileChange = async (event) =>  {
+    const base64 = await this.convertBase64(event.target.files[0]);
+    this.setState({ file: base64 });
+  }
+
+  onSelection(event) {
+    if(event.target.checked){
+      this.setState({ ispublic: event.target.value });
+    }
+    else{
+      this.setState({ ispublic: 'private' });
+    }
   }
 
   render() {
@@ -60,7 +86,10 @@ class BlogFormReview extends Component {
         <h5>Please confirm your entries</h5>
         {this.renderFields()}
       <h5>Add an Image</h5>
-      <input onChange={this.onFileChange.bind(this)} type="file" accept="image/*" />
+      <p>Resolution greater than or equal to 1000*600</p>
+      <input onChange={this.onFileChange.bind(this)} className='input-field' type="file" accept="image/*" />
+      <label>Check this to show on home page</label>
+      <input  onChange={this.onSelection.bind(this)} className='input-field' type="checkbox" id="isPublic" name="isPublic" value="public"></input>
         {this.renderButtons()}
       </form>
     );
