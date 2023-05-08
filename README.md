@@ -125,6 +125,11 @@ Install Node v14+
 
 6. Get Cloudinary Keys _&rarr; [here](https://cloudinary.com/developers)_
 
+7. In base folder run the command
+   ```sh
+   npm run dev
+   ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
