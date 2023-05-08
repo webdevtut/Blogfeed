@@ -2196,8 +2196,8 @@ h6 {
 		letter-spacing: 0px;
 	}
 	h3 {
-		font-size: 23px;
-		line-height: 28px;
+		font-size: 23px !important;
+		line-height: 28px !important;
 		letter-spacing: 0px;
 	}
 	h4 {
