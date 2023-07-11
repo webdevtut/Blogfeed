@@ -14,7 +14,7 @@ module.exports = app => {
   });
 
   app.get('/api/publicblogs', async (req, res) => {
-    const blogs = await Blog.find({ blogType: 'public' });
+    const blogs = await Blog.find({ blogType: 'public' }).sort({"createdAt": -1});
     res.send(blogs);
   });
 
