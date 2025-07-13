@@ -152,7 +152,7 @@ class Landing extends Component {
                           style={{ margin: "0 auto 20px" }}
                         />
                         <p>
-                          &copy; 2023 &nbsp;{" "}
+                          &copy; 2025 &nbsp;{" "}
                           <a href="https://www.github.com/webdevtut">WebDev™</a>
                         </p>
                       </div>
