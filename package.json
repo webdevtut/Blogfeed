@@ -16,7 +16,7 @@
     "heroku-postbuild": "npm run build",
     "test": "jest"
   },
-  "author": "",
+  "author": "Tushar Kadam",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "2.188.0",
